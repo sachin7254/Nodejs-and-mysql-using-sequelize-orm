@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
+            <a class="navbar-brand" href="/">Sequelize</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/details">Details</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="row">
+        <% if (global.data.length > 0){ %>
+        <table class="table table-bordered" style="margin-top: 5%">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for(var i=0; i < global.data.length; i++) { %>
+            <tr>
+                <td><%= global.data[i].dataValues.id%></td>
+                <td><%= global.data[i].dataValues.firstName %></td>
+                <td><%= global.data[i].dataValues.lastName %></td>
+                <td><%= global.data[i].dataValues.email %></td>
+                <td><a href="/edit/<%= global.data[i].dataValues.id%>"> Edit</a><a href="/delete/<%= global.data[i].dataValues.id%>"> Delete</a></td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
+        <% } else{ %>
+            <h1>No Data</h1>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>
